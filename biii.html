@@ -1,0 +1,411 @@
+<script>
+    var con1 = document.getElementById("b1");
+    var con2 = document.getElementById("b2");
+    var con3 = document.getElementById("b3");
+    var con4 = document.getElementById("b4");
+    var con5 = document.getElementById("b5");
+    var con6 = document.getElementById("b6");
+    var con7 = document.getElementById("b7");
+    var con8 = document.getElementById("b8");
+    var con9 = document.getElementById("b9");
+    var con10 = document.getElementById("n1");
+    var fina=document.getElementById("finalize");
+
+    var total=0;
+
+con1.addEventListener('click', function () {
+    addRow("Mutton Biryani", "1", "340.00");   
+});
+
+con2.addEventListener('click', function () {
+    addRow("Non Veg Meals", "1", "200.00");   
+});
+
+con3.addEventListener('click', function () {
+    addRow("Chettinad Chicken", "1", "200.00");   
+});
+
+con4.addEventListener('click', function () {
+    addRow("Chicken Fried Rice", "1", "120.00");   
+});
+
+con5.addEventListener('click', function () {
+    addRow("Pepper Chicken", "1", "150.00");   
+});
+
+con6.addEventListener('click', function () {
+    addRow("Tandoori Chicken", "1", "590.00");   
+});
+
+con7.addEventListener('click', function () {
+    addRow("Fish Curry", "1", "125.00");   
+});
+
+con8.addEventListener('click', function () {
+    addRow("Prawn 65", "1", "155.00");   
+});
+
+con9.addEventListener('click', function () {
+    addRow("Paneer 65", "1", "100.00");   
+});
+
+function addRow(name, qty, value) {
+    var rowContainer = document.createElement('div');
+    rowContainer.classList.add('d-flex', 'flex-row');
+
+    total+=parseFloat(value);
+
+    var v1 = document.createElement('p');
+    var v2 = document.createElement('p');
+    var v3 = document.createElement('p');
+    var deleteButton=document.createElement('button')
+
+    v1.innerText = name;
+    v2.innerText = qty;
+    v3.innerText = value;
+
+    v1.style.marginLeft = "22px";
+    v1.style.fontFamily = "Roboto";
+    v1.style.fontSize = "20px";
+    v1.style.fontWeight = "bold";
+
+    v2.style.marginLeft = "auto";
+    v2.style.fontFamily = "Roboto";
+    v2.style.fontSize = "20px";
+    v2.style.fontWeight = "bold";
+
+    v3.style.marginLeft = "auto";
+    v3.style.fontFamily = "Roboto";
+    v3.style.fontSize = "20px";
+    v3.style.fontWeight = "bold";
+
+    deleteButton.innerText = "X";
+    deleteButton.style.width="60px";
+    deleteButton.style.height="30px";
+    deleteButton.style.marginLeft="5px";
+    deleteButton.style.backgroundColor="transparent"
+    deleteButton.style.color="red"
+    deleteButton.style.borderColor="transparent";
+    deleteButton.style.fontWeight="bold";
+
+    rowContainer.appendChild(v1);
+    rowContainer.appendChild(v2);
+    rowContainer.appendChild(v3);
+    rowContainer.appendChild(deleteButton);
+
+    deleteButton.onclick = function () {
+        total-=parseFloat(value);
+        con10.removeChild(rowContainer);
+    };
+    con10.appendChild(rowContainer);
+}
+fina.addEventListener('click',function()
+{
+    var totalElement = document.getElementById("tot");
+    totalElement.innerText = "Total: ₹" + total.toFixed(2);
+});
+
+</script>
+</body>
+</html>
+
+
+////////////////////////////////////
+<script>
+    var con1 = document.getElementById("b1");
+    var con2 = document.getElementById("b2");
+    var con3 = document.getElementById("b3");
+    var con4 = document.getElementById("b4");
+    var con5 = document.getElementById("b5");
+    var con6 = document.getElementById("b6");
+    var con7 = document.getElementById("b7");
+    var con8 = document.getElementById("b8");
+    var con9 = document.getElementById("b9");
+    var con10 = document.getElementById("n1");
+    var fina=document.getElementById("finalize");
+
+    var total=0;
+    var repeat=0;
+    var newarray=new Array()
+    for(var i=0;i<9;i++)
+    {
+        newarray.push("1");
+    }
+
+con1.addEventListener('click', function () {
+    newarray[0]=newarray[0]++;
+    addRow(0,"Mutton Biryani", newarray[0], "340.00");   
+});
+
+con2.addEventListener('click', function () {
+    newarray[1]=newarray[1]++;
+    addRow(1,"Non Veg Meals", newarray[1], "200.00");   
+});
+
+con3.addEventListener('click', function () {
+    newarray[2]=newarray[2]++;
+    addRow(2,"Chettinad Chicken", newarray[2], "200.00");   
+});
+
+con4.addEventListener('click', function () {
+    newarray[3]=newarray[3]++;
+    addRow(3,"Chicken Fried Rice", newarray[3], "120.00");   
+});
+
+con5.addEventListener('click', function () {
+    newarray[4]=newarray[4]++;
+    addRow(4,"Pepper Chicken", newarray[4], "150.00");   
+});
+
+con6.addEventListener('click', function () {
+    newarray[5]=newarray[5]++;
+    addRow(5,"Tandoori Chicken", newarray[5], "590.00");   
+});
+
+con7.addEventListener('click', function () {
+    newarray[6]=newarray[6]++;
+    addRow(6,"Fish Curry", newarray[6], "125.00");   
+});
+
+con8.addEventListener('click', function () {
+    newarray[7]=newarray[7]++;
+    addRow(7,"Prawn 65", newarray[7], "155.00");   
+});
+
+con9.addEventListener('click', function () {
+    newarray[8]=newarray[8]++;
+    addRow(8,"Paneer 65", newarray[8], "100.00");   
+});
+
+        function addRow(val, name, qty, value) {
+        if (qty > 0) {
+            newarray[val]++;
+            total += parseFloat(value);
+            var existingRow = findExistingRow(name);
+
+            if (existingRow) {
+                var existingQty = existingRow.querySelector('.quantity');
+                var existingValue = existingRow.querySelector('.value');
+
+                existingQty.innerText = newarray[val].toString();
+                existingValue.innerText = (parseFloat(existingQty.innerText) * parseFloat(value)).toFixed(2);
+            }
+        } else {
+            var rowContainer = document.createElement('div');
+            rowContainer.classList.add('d-flex', 'flex-row');
+
+            total += parseFloat(value);
+
+            var v1 = document.createElement('p');
+            var v2 = document.createElement('p');
+            var v3 = document.createElement('p');
+            var deleteButton = document.createElement('button')
+
+            v1.innerText = name;
+            v2.innerText = newarray[val].toString();
+            v3.innerText = value;
+
+            v1.style.marginLeft = "22px";
+            v1.style.fontFamily = "Roboto";
+            v1.style.fontSize = "20px";
+            v1.style.fontWeight = "bold";
+
+            v2.style.marginLeft = "auto";
+            v2.style.fontFamily = "Roboto";
+            v2.style.fontSize = "20px";
+            v2.style.fontWeight = "bold";
+
+            v3.style.marginLeft = "auto";
+            v3.style.fontFamily = "Roboto";
+            v3.style.fontSize = "20px";
+            v3.style.fontWeight = "bold";
+
+            deleteButton.innerText = "X";
+            deleteButton.style.width = "60px";
+            deleteButton.style.height = "30px";
+            deleteButton.style.marginLeft = "5px";
+            deleteButton.style.backgroundColor = "transparent"
+            deleteButton.style.color = "red"
+            deleteButton.style.borderColor = "transparent";
+            deleteButton.style.fontWeight = "bold";
+
+            rowContainer.appendChild(v1);
+            rowContainer.appendChild(v2);
+            rowContainer.appendChild(v3);
+            rowContainer.appendChild(deleteButton);
+
+            deleteButton.onclick = function () {
+                if (newarray[val] > 1) {
+                    newarray[val]--;
+                    existingQty.innerText = newarray[val].toString();
+                    existingValue.innerText = (parseFloat(existingQty.innerText) * parseFloat(value)).toFixed(2);
+                } else {
+                    total -= parseFloat(value);
+                    con10.removeChild(rowContainer);
+                }
+            };
+
+            con10.appendChild(rowContainer);
+        }
+    }
+fina.addEventListener('click',function()
+{
+    var totalElement = document.getElementById("tot");
+    totalElement.innerText = "Total: ₹" + total.toFixed(2);
+});
+
+</script>
+
+////////////////////////////////
+<script>
+    var con1 = document.getElementById("b1");
+    var con2 = document.getElementById("b2");
+    var con3 = document.getElementById("b3");
+    var con4 = document.getElementById("b4");
+    var con5 = document.getElementById("b5");
+    var con6 = document.getElementById("b6");
+    var con7 = document.getElementById("b7");
+    var con8 = document.getElementById("b8");
+    var con9 = document.getElementById("b9");
+    var con10 = document.getElementById("n1");
+    var fina = document.getElementById("finalize");
+
+    var total = 0;
+    var newarray = Array(9).fill(0);
+
+    function addRow(val, name, qty, value) {
+        var existingRow = findExistingRow(name);
+
+        if (existingRow) {
+            var existingQty = existingRow.querySelector('.quantity');
+            var existingValue = existingRow.querySelector('.value');
+
+            newarray[val]++;
+            existingQty.innerText = newarray[val].toString();
+            existingValue.innerText = (parseFloat(existingQty.innerText) * parseFloat(value)).toFixed(2);
+            updateTotal();
+        } else {
+            var rowContainer = document.createElement('div');
+            rowContainer.classList.add('d-flex', 'flex-row');
+
+            newarray[val]++;
+            total += parseFloat(value);
+
+            var v1 = document.createElement('p');
+            var v2 = document.createElement('p');
+            var v3 = document.createElement('p');
+            var deleteButton = document.createElement('button')
+
+            v1.innerText = name;
+            v2.innerText = newarray[val].toString();
+            v3.innerText = value;
+
+            v1.classList.add('item-name');
+            v2.classList.add('quantity');
+            v3.classList.add('value');
+
+            v1.style.marginLeft = "22px";
+            v1.style.fontFamily = "Roboto";
+            v1.style.fontSize = "20px";
+            v1.style.fontWeight = "bold";
+
+            v2.style.marginLeft = "auto";
+            v2.style.fontFamily = "Roboto";
+            v2.style.fontSize = "20px";
+            v2.style.fontWeight = "bold";
+
+            v3.style.marginLeft = "auto";
+            v3.style.fontFamily = "Roboto";
+            v3.style.fontSize = "20px";
+            v3.style.fontWeight = "bold";
+
+            deleteButton.innerText = "X";
+            deleteButton.style.width = "60px";
+            deleteButton.style.height = "30px";
+            deleteButton.style.marginLeft = "5px";
+            deleteButton.style.backgroundColor = "transparent"
+            deleteButton.style.color = "red"
+            deleteButton.style.borderColor = "transparent";
+            deleteButton.style.fontWeight = "bold";
+
+            rowContainer.appendChild(v1);
+            rowContainer.appendChild(v2);
+            rowContainer.appendChild(v3);
+            rowContainer.appendChild(deleteButton);
+
+            deleteButton.onclick = function () {
+                if (newarray[val] > 1) {
+                    newarray[val]--;
+                    existingQty.innerText = newarray[val].toString();
+                    existingValue.innerText = (parseFloat(existingQty.innerText) * parseFloat(value)).toFixed(2);
+                    updateTotal();
+                } else {
+                    total -= parseFloat(value);
+                    con10.removeChild(rowContainer);
+                    updateTotal();
+                }
+            };
+
+            con10.appendChild(rowContainer);
+            updateTotal();
+        }
+    }
+
+    con1.addEventListener('click', function () {
+        addRow(0, "Mutton Biryani", newarray[0], "340.00");
+    });
+
+    con2.addEventListener('click', function () {
+        addRow(1, "Non Veg Meals", newarray[1], "200.00");
+    });
+
+    con3.addEventListener('click', function () {
+        addRow(2, "Chettinad Chicken", newarray[2], "200.00");
+    });
+
+    con4.addEventListener('click', function () {
+        addRow(3, "Chicken Fried Rice", newarray[3], "120.00");
+    });
+
+    con5.addEventListener('click', function () {
+        addRow(4, "Pepper Chicken", newarray[4], "150.00");
+    });
+
+    con6.addEventListener('click', function () {
+        addRow(5, "Tandoori Chicken", newarray[5], "590.00");
+    });
+
+    con7.addEventListener('click', function () {
+        addRow(6, "Fish Curry", newarray[6], "125.00");
+    });
+
+    con8.addEventListener('click', function () {
+        addRow(7, "Prawn 65", newarray[7], "155.00");
+    });
+
+    con9.addEventListener('click', function () {
+        addRow(8, "Paneer 65", newarray[8], "100.00");
+    });
+
+    fina.addEventListener('click', function () {
+        var totalElement = document.getElementById("tot");
+        totalElement.innerText = "Total: ₹" + total.toFixed(2);
+    });
+
+    function findExistingRow(name) {
+        var rows = con10.getElementsByClassName('d-flex');
+
+        for (var i = 0; i < rows.length; i++) {
+            var itemName = rows[i].getElementsByClassName('item-name')[0].innerText;
+            if (itemName === name) {
+                return rows[i];
+            }
+        }
+        return null;
+    }
+
+    function updateTotal() {
+        var totalElement = document.getElementById("tot");
+        totalElement.innerText = "Total: ₹" + total.toFixed(2);
+    }
+</script>
